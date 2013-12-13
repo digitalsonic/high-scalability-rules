@@ -11,6 +11,7 @@
 
 1、添加Slf4J对其他框架的支持
 
+```xml
     <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
@@ -21,15 +22,18 @@
         <artifactId>log4j-over-slf4j</artifactId>
         <version>1.7.5</version>
     </dependency>
+```
 
 2、排除掉第三方库中的依赖，以Apache Commons Logging为例，在`<dependency>`中添加如下内容
 
+```xml
     <exclusions>
         <exclusion>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
         </exclusion>
     </exclusions>
+```
 
 *（后续的文档中，默认使用Slf4J进行说明。）*
 
@@ -37,29 +41,39 @@
 
 在使用`Logger`时，需要用如下方式在类中定义Logger对象：
 
+```java
     private static final Logger logger = LoggerFactory.getLogger(xxx.class);
+```
 
 如果有确定的日志名，则可以直接指定日志名：
 
+```java
     private static final Logger logger = LoggerFactory.getLogger("日志名");
+```
 
 ### 1.3 Logger的使用
 
 输出日志时，**不得**使用字符串拼接的方式，即：
 
+```java
     logger.info("foo" + bar);
+```
 
 需要使用以下方式，避免不必要的`toString`和字符串拼接操作：
 
+```java
     logger.info("foo{}", bar);
+```
 
 Slf4J的方法支持可变参数，可以添加任意数量的{}，且无需在输出日志前进行isXXXEnabled判断。
 
 如果使用Apache Commons Logging或者Log4J，需要在输出日之前进行判断，例如：
 
+```java
     if (logger.isInfoEnabled()) {
         logger.info("foo");
     }
+```
 
 建议对`ERROR`和`WARN`级别以外的日志都增加此判断。
 
