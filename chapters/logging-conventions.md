@@ -67,7 +67,7 @@
 
 Slf4J的方法支持可变参数，可以添加任意数量的{}，且无需在输出日志前进行isXXXEnabled判断。
 
-如果使用Apache Commons Logging或者Log4J，需要在输出日之前进行判断，例如：
+如果使用Apache Commons Logging或者Log4J，需要在输出之前进行判断，例如：
 
 ```java
     if (logger.isInfoEnabled()) {
@@ -97,12 +97,12 @@ Slf4J的方法支持可变参数，可以添加任意数量的{}，且无需在�
 
 日志可以按天或者按小时滚动，滚动后的日志文件后缀名结尾方式如下：
 
-1. 按天滚动，xxx.log.20131212
-2. 按小时滚动，xxx.log.20131212_12
+1. 按天滚动，xxx.log.20131213
+2. 按小时滚动，xxx.log.20131213_12
 
 综上，一个按天滚动、需要保存7天的摘要日志完整文件名是这样的：
 
-    xxx-digest.7d.log.20121212
+    xxx-digest.7d.log.20131213
 
 ## 3 日志格式
 
