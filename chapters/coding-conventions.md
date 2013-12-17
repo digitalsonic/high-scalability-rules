@@ -189,6 +189,9 @@ TBD
 TBD
 
 ## 5 代码风格
+
+团队中的所有成员需要使用一样的代码模板、遵循一致的代码风格，如果使用Eclipse，可以导入统一的CodeTemplate、CleanUp和Formatter配置。
+
 ### 5.1 命名
 #### 5.1.1 包名
 
@@ -221,6 +224,8 @@ Java接口中的常量默认是`public static final`的，所以定义时无需添加这三个修饰符。
 方法名需要遵循驼峰规则，首字母小写，必须以动词开头。
 
 类成员属性的`getter`和`setter`方法使用IDE自动生成的功能，遵循JavaBean的命名规范。
+
+Java接口中的方法默认是`public abstract`的，所以定义时无需添加这两个修饰符。
 
 ### 5.2 注释
 
@@ -329,7 +334,7 @@ IDE自动生成的`getter`和`setter`方法无需注释。
 
 ### 6.1 金额处理
 
-表示金额时，不得使用原子类型，比如double、float、long。在系统中，**必须**使用[Joda Money](http://www.joda.org/joda-money/)中的Money类来表示金额。
+表示金额时，不得使用原子类型，比如double、float、long。在系统中，**必须**使用[Joda Money](http://www.joda.org/joda-money/)中的`Money`类来表示金额。
 
 在自动生成的代码中（仅限DAL中），如果无法使用`Money`，则必须使用`BigDecimal`来表示金额。且使用范围局限在DAL中，必须将整个Entity转换成业务的对象后在外层使用。
 
@@ -337,7 +342,7 @@ IDE自动生成的`getter`和`setter`方法无需注释。
 
 ### 6.2 日期操作
 
-在系统中表示日期时间时，需要使用`java.util.Date`，而不是`java.sql.Date`！
+在系统中表示日期时间时，需要使用`java.util.Date`，而**不是**`java.sql.Date`！
 
 在进行日期操作时，建议采用[Joda Time](http://www.joda.org/joda-time/)。比如，格式化时间对象时：
 
